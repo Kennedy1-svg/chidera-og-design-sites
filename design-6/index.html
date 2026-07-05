@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chidera OG Onyekachukwu &mdash; Digital Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#241811;
+    --espresso-2:#2E1F16;
+    --brass:#D6A24C;
+    --coral:#E2664B;
+    --teal:#5B9C93;
+    --ivory:#F3E9DA;
+    --muted:#B8A78F;
+    --line:rgba(214,162,76,0.2);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--espresso);color:var(--ivory);font-family:'Inter',sans-serif;line-height:1.6;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--ivory);}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  .tag{font-family:'Fira Code',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral);}
+
+  .room{position:relative;border-bottom:1px solid var(--line);padding:110px 0;}
+  .room:last-of-type{border-bottom:none;}
+  .room:nth-of-type(3n+2){background:var(--espresso-2);}
+  .room::before,.room::after{content:'+';position:absolute;font-family:'Fira Code';color:var(--line);font-size:1rem;}
+  .room::before{top:24px;left:24px;}
+  .room::after{bottom:24px;right:24px;}
+  .room-label{position:absolute;top:24px;right:32px;font-family:'Fira Code';font-size:0.68rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(36,24,17,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;padding:18px 32px;}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:1.05rem;color:var(--brass);}
+  .navlinks{display:flex;gap:26px;list-style:none;font-size:0.82rem;}
+  .navlinks a{color:var(--muted);}
+  .navlinks a:hover{color:var(--coral);}
+  .navtoggle{display:none;background:none;border:1px solid var(--brass);color:var(--brass);padding:8px 14px;font-family:'Fira Code';font-size:0.75rem;border-radius:4px;}
+
+  /* WELCOME MAT MARQUEE — variation on design 3's straight ticker */
+  .mat-marquee{
+    max-width:640px;margin:44px auto 0;border-radius:100px;overflow:hidden;
+    transform:rotate(-2deg);border:2px solid var(--espresso);background:var(--coral);
+  }
+  .mat-track{display:inline-block;white-space:nowrap;animation:matmove 20s linear infinite;
+    font-family:'Fira Code';font-weight:500;font-size:0.78rem;color:var(--espresso);padding:11px 0;}
+  .mat-track span{margin:0 26px;}
+  @keyframes matmove{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+  #home{text-align:center;padding-top:70px;}
+  .door-frame{width:180px;height:260px;margin:0 auto 20px;border:3px solid var(--brass);border-radius:90px 90px 6px 6px;
+    background:repeating-linear-gradient(135deg, transparent, transparent 10px, rgba(214,162,76,0.06) 10px, rgba(214,162,76,0.06) 11px);
+    display:flex;align-items:flex-end;justify-content:center;position:relative;}
+  .door-frame .knob{position:absolute;right:24px;top:50%;width:10px;height:10px;border-radius:50%;background:var(--coral);}
+  .hero-name{font-size:clamp(2.4rem,6.6vw,4.6rem);margin:34px 0 20px;}
+  .hero-name .accent{color:var(--coral);}
+  .hero-tag{max-width:560px;margin:0 auto 34px;font-size:1.1rem;color:var(--ivory);}
+  .hero-copy{max-width:600px;margin:0 auto 12px;color:var(--muted);}
+  .hero-social{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:34px;font-family:'Fira Code';font-size:0.76rem;}
+  .hero-social a{padding:8px 14px;border:1px solid var(--line);border-radius:4px;color:var(--brass);}
+  .hero-social a:hover{border-color:var(--coral);color:var(--coral);}
+  .scrolldown{margin-top:50px;font-family:'Fira Code';font-size:0.75rem;color:var(--muted);}
+
+  .about-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:center;}
+  .window-frame{aspect-ratio:4/5;border:3px solid var(--teal);position:relative;background:var(--espresso-2);border-radius:8px;}
+  .window-frame::before,.window-frame::after{content:'';position:absolute;background:var(--teal);opacity:0.5;}
+  .window-frame::before{top:0;bottom:0;left:50%;width:2px;}
+  .window-frame::after{left:0;right:0;top:50%;height:2px;}
+  .window-frame span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Fira Code';font-size:0.75rem;color:var(--muted);text-align:center;padding:30px;}
+  .about-copy p{margin-bottom:16px;color:var(--muted);}
+  .disciplines{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+  .pill{font-family:'Fira Code';font-size:0.74rem;padding:8px 14px;border:1px solid var(--teal);color:var(--teal);border-radius:4px;}
+  .pill:nth-child(2){border-color:var(--coral);color:var(--coral);}
+  .pill:nth-child(3){border-color:var(--brass);color:var(--brass);}
+  .pill:nth-child(4){border-color:var(--teal);color:var(--teal);}
+
+  .hall-item{display:grid;grid-template-columns:130px 1fr;gap:26px;padding:26px 0;border-top:1px solid var(--line);}
+  .hall-item:first-child{border-top:none;}
+  .hall-year{font-family:'Fira Code';font-size:0.8rem;color:var(--coral);padding-top:4px;}
+  .hall-role h3{font-size:1.25rem;margin-bottom:4px;}
+  .hall-role .org{color:var(--teal);font-size:0.92rem;margin-bottom:6px;}
+  .hall-role p{color:var(--muted);font-size:0.95rem;}
+
+  .skill-cloud{display:flex;flex-wrap:wrap;gap:12px;}
+  .skill-tag{border:1px solid var(--line);border-top:3px solid var(--coral);padding:11px 18px;font-size:0.9rem;border-radius:4px;background:var(--espresso-2);}
+  .skill-tag:nth-child(4n+2){border-top-color:var(--teal);}
+  .skill-tag:nth-child(4n+3){border-top-color:var(--brass);}
+  .skill-tag:nth-child(4n+4){border-top-color:var(--coral);}
+
+  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .proj-card{background:var(--espresso);padding:38px;border-top:4px solid var(--coral);}
+  .proj-card:nth-child(2){border-top-color:var(--teal);}
+  .proj-card:nth-child(3){border-top-color:var(--brass);}
+  .proj-card:nth-child(4){border-top-color:var(--coral);}
+  .proj-num{font-family:'Fira Code';color:var(--coral);font-size:0.78rem;margin-bottom:12px;}
+  .proj-card:nth-child(2) .proj-num{color:var(--teal);}
+  .proj-card:nth-child(3) .proj-num{color:var(--brass);}
+  .proj-card h3{font-size:1.35rem;margin-bottom:10px;}
+  .proj-card p{color:var(--muted);font-size:0.92rem;}
+
+  .resume-card{display:flex;align-items:center;justify-content:space-between;border:2px solid var(--brass);padding:38px 44px;flex-wrap:wrap;gap:20px;border-radius:8px;}
+  .btn{font-family:'Fira Code';font-size:0.8rem;background:var(--coral);color:var(--espresso);padding:14px 24px;border-radius:4px;white-space:nowrap;font-weight:700;}
+
+  .channel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .channel-card{background:var(--espresso);padding:32px 26px;text-align:center;}
+  .channel-glyph{width:36px;height:52px;border:2px solid var(--teal);border-radius:18px 18px 3px 3px;margin:0 auto 16px;position:relative;}
+  .channel-glyph::after{content:'';position:absolute;right:6px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--coral);}
+  .channel-card:nth-child(1) .channel-glyph{border-color:var(--coral);}
+  .channel-card:nth-child(3) .channel-glyph{border-color:var(--brass);}
+  .channel-card h3{font-size:1.1rem;margin-bottom:8px;}
+  .channel-card p{color:var(--muted);font-size:0.88rem;}
+
+  .pub-row{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-top:1px solid var(--line);flex-wrap:wrap;gap:12px;}
+  .pub-row:last-child{border-bottom:1px solid var(--line);}
+  .pub-title{font-family:'Space Grotesk';font-size:1.05rem;}
+  .pub-meta{font-family:'Fira Code';font-size:0.74rem;color:var(--muted);}
+
+  .shelf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;}
+  .shelf-col ul{list-style:none;margin-top:14px;}
+  .shelf-col li{padding:11px 0;border-top:1px solid var(--line);font-size:0.9rem;}
+  .shelf-col li:first-of-type{border-top:none;}
+  .shelf-col li strong{display:block;font-family:'Space Grotesk';font-size:0.95rem;}
+  .shelf-col li span{color:var(--muted);font-size:0.8rem;}
+
+  #philosophy{text-align:center;}
+  .plaque{display:inline-block;border:2px solid var(--coral);padding:36px 50px;position:relative;border-radius:8px;}
+  .plaque::before,.plaque::after{content:'';position:absolute;width:8px;height:8px;border-radius:50%;top:14px;}
+  .plaque::before{left:14px;background:var(--brass);}
+  .plaque::after{right:14px;background:var(--teal);}
+  .quote{font-family:'Space Grotesk';font-size:clamp(1.3rem,3vw,2rem);max-width:640px;color:var(--brass);}
+
+  #contact{text-align:center;}
+  #contact h2{font-size:clamp(2rem,4.4vw,3.2rem);margin-bottom:18px;}
+  .contact-email{font-family:'Fira Code';font-size:1.05rem;color:var(--coral);border-bottom:1px solid var(--coral);padding-bottom:3px;}
+  .contact-social{display:flex;gap:20px;justify-content:center;margin-top:36px;font-size:0.85rem;color:var(--muted);}
+
+  footer{text-align:center;padding:34px 0;font-family:'Fira Code';font-size:0.7rem;color:var(--muted);}
+
+  @media (max-width:820px){
+    .navlinks{display:none;}
+    .navtoggle{display:block;}
+    .about-grid,.proj-grid,.channel-grid,.shelf-grid{grid-template-columns:1fr;}
+    .room{padding:64px 0;}
+    .mat-marquee{max-width:90%;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#home" class="logo">Chidera OG</a>
+    <ul class="navlinks">
+      <li><a href="#home">Door</a></li><li><a href="#about">Living Room</a></li>
+      <li><a href="#projects">Workshop</a></li><li><a href="#shelf">Shelf</a></li>
+      <li><a href="#contact">Porch</a></li>
+    </ul>
+    <button class="navtoggle">Menu</button>
+  </div>
+</nav>
+
+<section id="home" class="room">
+  <span class="room-label">Room 00 &mdash; The Door</span>
+  <div class="wrap">
+    <div class="mat-marquee"><div class="mat-track">
+      <span>&#9679; WELCOME HOME</span><span>&#9679; MEDIA</span><span>&#9679; TECH</span><span>&#9679; CREATIVE ENTREPRENEURSHIP</span>
+      <span>&#9679; WELCOME HOME</span><span>&#9679; MEDIA</span><span>&#9679; TECH</span><span>&#9679; CREATIVE ENTREPRENEURSHIP</span>
+    </div></div>
+    <div class="door-frame"><span class="knob"></span></div>
+    <div class="tag">Digital home &middot; est. 2026</div>
+    <h1 class="hero-name" style="margin-top:14px;">Chidera <span class="accent">OG</span> Onyekachukwu</h1>
+    <p class="hero-tag">Somewhere between media, tech, and creative entrepreneurship.</p>
+    <p class="hero-copy">Consider this like my digital residence. Just like I have a physical home, this is where I reside online &mdash; my work experience over the years, skills honed with that experience, projects I'm building, my resume, creative channels, publications, and my media library.</p>
+    <p class="hero-copy">Oh, you are in for a treat.</p>
+    <p class="hero-copy">You're presently at the door to my digital home &mdash; scroll down to enter the living room.</p>
+    <div class="hero-social">
+      <a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">Substack</a><a href="#">Medium</a>
+      <a href="#">X</a><a href="#">TikTok</a><a href="#">Facebook</a><a href="#">YouTube</a>
+    </div>
+    <div class="scrolldown">&#8595; open the door</div>
+  </div>
+</section>
+
+<section id="about" class="room">
+  <span class="room-label">Room 01 &mdash; The Living Room</span>
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="window-frame"><span>pencil-sketch portrait, framed like a window</span></div>
+      <div class="about-copy">
+        <h2 style="font-size:1.9rem;margin-bottom:18px;">Hello, I'm Chidera: a multidisciplinary builder.</h2>
+        <p>I move between media, technology, and creative entrepreneurship, picking up whichever tool the moment calls for.</p>
+        <p>Make yourself at home. Everything here, like me, is a work in progress.</p>
+        <div class="disciplines">
+          <span class="pill">Media</span><span class="pill">Tech</span><span class="pill">Entrepreneurship</span><span class="pill">Strategy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="room">
+  <span class="room-label">Room 02 &mdash; The Hallway</span>
+  <div class="wrap">
+    <h2 class="tag" style="font-size:0.9rem;margin-bottom:34px;display:block;">Experience over the years</h2>
+    <div class="hall-item"><div class="hall-year">2024&mdash;Now</div><div class="hall-role"><h3>Role Title Here</h3><div class="org">Company / Venture</div><p>What you owned, and what changed because you were there.</p></div></div>
+    <div class="hall-item"><div class="hall-year">2022&mdash;2024</div><div class="hall-role"><h3>Role Title Here</h3><div class="org">Company / Venture</div><p>What you owned, and what changed because you were there.</p></div></div>
+    <div class="hall-item"><div class="hall-year">2020&mdash;2022</div><div class="hall-role"><h3>Role Title Here</h3><div class="org">Company / Venture</div><p>What you owned, and what changed because you were there.</p></div></div>
+  </div>
+</section>
+
+<section id="skills" class="room">
+  <span class="room-label">Room 03 &mdash; The Toolbox</span>
+  <div class="wrap">
+    <h2 class="tag" style="font-size:0.9rem;margin-bottom:34px;display:block;">Skills honed with this experience</h2>
+    <div class="skill-cloud">
+      <span class="skill-tag">Brand Strategy</span><span class="skill-tag">Content Design</span>
+      <span class="skill-tag">Product Thinking</span><span class="skill-tag">Storytelling</span>
+      <span class="skill-tag">Community Building</span><span class="skill-tag">Creative Direction</span>
+      <span class="skill-tag">Copywriting</span><span class="skill-tag">Partnerships</span>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="room">
+  <span class="room-label">Room 04 &mdash; The Workshop</span>
+  <div class="wrap">
+    <h2 class="tag" style="font-size:0.9rem;margin-bottom:34px;display:block;">Projects</h2>
+    <div class="proj-grid">
+      <div class="proj-card"><div class="proj-num">01</div><h3>Drop by Drop</h3><p>What this project is, who it's for, and the problem it's solving.</p></div>
+      <div class="proj-card"><div class="proj-num">02</div><h3>POL +234</h3><p>What this project is, who it's for, and the problem it's solving.</p></div>
+      <div class="proj-card"><div class="proj-num">03</div><h3>Facedolls</h3><p>What this project is, who it's for, and the problem it's solving.</p></div>
+      <div class="proj-card"><div class="proj-num">04</div><h3>Regali</h3><p>What this project is, who it's for, and the problem it's solving.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="resume" class="room">
+  <span class="room-label">Room 05 &mdash; The Study</span>
+  <div class="wrap">
+    <div class="resume-card">
+      <div><h3 style="font-size:1.3rem;">Want the long version?</h3><p style="color:var(--muted);">Every role, in order, with the receipts.</p></div>
+      <a href="#" class="btn">Download CV &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<section id="channels" class="room">
+  <span class="room-label">Room 06 &mdash; The Corridor</span>
+  <div class="wrap">
+    <h2 class="tag" style="font-size:0.9rem;margin-bottom:34px;display:block;">Creative channels</h2>
+    <div class="channel-grid">
+      <div class="channel-card"><div class="channel-glyph"></div><h3>Design</h3><p>Visual work and brand systems.</p></div>
+      <div class="channel-card"><div class="channel-glyph"></div><h3>Visual</h3><p>Photography and film.</p></div>
+      <div class="channel-card"><div class="channel-glyph"></div><h3>Writing</h3><p>Essays on media, tech, and building.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="publications" class="room">
+  <span class="room-label">Room 07 &mdash; The Bookshelf</span>
+  <div class="wrap">
+    <h2 class="tag" style="font-size:0.9rem;margin-bottom:34px;display:block;">Publications</h2>
+    <div class="pub-row"><span class="pub-title">Publication Title Here</span><span class="pub-meta">Outlet &middot; 2026</span></div>
+    <div class="pub-row"><span class="pub-title">Publication Title Here</span><span class="pub-meta">Outlet &middot; 2025</span></div>
+    <div class="pub-row"><span class="pub-title">Publication Title Here</span><span class="pub-meta">Outlet &middot; 2025</span></div>
+  </div>
+</section>
+
+<section id="shelf" class="room">
+  <span class="room-label">Room 08 &mdash; The Media Cabinet</span>
+  <div class="wrap">
+    <h2 class="tag" style="font-size:0.9rem;margin-bottom:34px;display:block;">OG's media library</h2>
+    <div class="shelf-grid">
+      <div class="shelf-col"><strong style="font-family:'Fira Code';font-size:0.78rem;color:var(--muted);">READING</strong><ul><li><strong>Book Title</strong><span>Author</span></li><li><strong>Book Title</strong><span>Author</span></li><li><strong>Book Title</strong><span>Author</span></li></ul></div>
+      <div class="shelf-col"><strong style="font-family:'Fira Code';font-size:0.78rem;color:var(--muted);">WATCHING</strong><ul><li><strong>Film / Show</strong><span>Director / Year</span></li><li><strong>Film / Show</strong><span>Director / Year</span></li><li><strong>Film / Show</strong><span>Director / Year</span></li></ul></div>
+      <div class="shelf-col"><strong style="font-family:'Fira Code';font-size:0.78rem;color:var(--muted);">LISTENING</strong><ul><li><strong>Album / Song</strong><span>Artist</span></li><li><strong>Album / Song</strong><span>Artist</span></li><li><strong>Album / Song</strong><span>Artist</span></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="philosophy" class="room">
+  <span class="room-label">Room 09 &mdash; Above the Mantel</span>
+  <div class="wrap">
+    <div class="plaque"><p class="quote">Build what you wish existed &mdash; then let it introduce you.</p></div>
+  </div>
+</section>
+
+<section id="contact" class="room">
+  <span class="room-label">Room 10 &mdash; The Porch</span>
+  <div class="wrap">
+    <h2>Come on in, let's talk.</h2>
+    <a href="mailto:hello@chideraog.com" class="contact-email">hello@chideraog.com</a>
+    <div class="contact-social"><a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">X</a><a href="#">Substack</a></div>
+  </div>
+</section>
+
+<footer>Chidera OG Onyekachukwu &copy; 2026 &mdash; Digital Home, all rooms accounted for.</footer>
+
+<script>
+document.querySelector('.navtoggle').addEventListener('click',()=>{
+  const nl=document.querySelector('.navlinks');
+  const show = nl.style.display==='flex';
+  nl.style.display = show ? 'none':'flex';
+  nl.style.flexDirection='column';
+  nl.style.position='absolute';
+  nl.style.top='60px';
+  nl.style.left='0';
+  nl.style.width='100%';
+  nl.style.background='var(--espresso)';
+  nl.style.padding='20px 32px';
+  nl.style.gap='16px';
+  nl.style.borderBottom='1px solid var(--line)';
+});
+</script>
+</body>
+</html>

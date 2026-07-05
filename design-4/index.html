@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chidera OG Onyekachukwu &mdash; The Dispatch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Libre+Franklin:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchment:#F3EFE4;
+    --ink:#1E2430;
+    --brick:#9A3324;
+    --hair:#C9C1AD;
+    --grey:#6A6659;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--parchment);color:var(--ink);font-family:'Libre Franklin',sans-serif;line-height:1.6;}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  .kicker{font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--brick);}
+
+  /* TICKER */
+  .ticker-band{background:var(--ink);color:var(--parchment);overflow:hidden;white-space:nowrap;padding:9px 0;}
+  .ticker-track{display:inline-block;animation:scroll 26s linear infinite;font-family:'Space Mono';font-size:0.75rem;letter-spacing:0.05em;}
+  .ticker-track span{margin-right:40px;}
+  @keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+  /* MASTHEAD */
+  .masthead{border-bottom:3px double var(--ink);padding:26px 0 18px;}
+  .masthead-top{display:flex;justify-content:space-between;font-family:'Space Mono';font-size:0.72rem;color:var(--grey);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:16px;flex-wrap:wrap;gap:8px;}
+  .masthead-title{text-align:center;font-size:clamp(2.6rem,7vw,5rem);letter-spacing:0.01em;}
+  .masthead-sub{text-align:center;font-family:'Space Mono';font-size:0.78rem;color:var(--grey);margin-top:10px;letter-spacing:0.04em;}
+
+  nav{border-bottom:1px solid var(--hair);background:var(--parchment);position:sticky;top:0;z-index:20;}
+  .navrow{display:flex;justify-content:center;gap:40px;padding:14px 0;font-family:'Space Mono';font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;flex-wrap:wrap;}
+  .navrow a{border-bottom:2px solid transparent;padding-bottom:4px;}
+  .navrow a:hover{border-color:var(--brick);color:var(--brick);}
+
+  section{padding:80px 0;border-bottom:1px solid var(--hair);}
+  section:last-of-type{border-bottom:none;}
+  .section-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:40px;flex-wrap:wrap;gap:10px;}
+  .section-head h2{font-size:2rem;}
+  .section-num{font-family:'Space Mono';font-size:0.75rem;color:var(--grey);}
+
+  /* HOME / LEAD STORY */
+  .lead-grid{display:grid;grid-template-columns:1.3fr 0.9fr;gap:60px;}
+  .lead-grid p{margin-bottom:16px;font-size:1.02rem;color:#3a362d;}
+  .drop-cap:first-letter{font-family:'Cormorant Garamond',serif;font-size:3.6rem;float:left;line-height:0.8;padding-right:10px;padding-top:6px;color:var(--brick);}
+  .byline-box{border-left:2px solid var(--brick);padding-left:24px;}
+  .byline-box h3{font-size:1.3rem;margin-bottom:10px;}
+  .social-list{list-style:none;font-family:'Space Mono';font-size:0.78rem;margin-top:20px;}
+  .social-list li{padding:8px 0;border-top:1px solid var(--hair);}
+  .social-list li:first-child{border-top:none;}
+
+  /* ABOUT */
+  .about-cols{display:grid;grid-template-columns:0.8fr 1.2fr;gap:60px;}
+  .sketch-box{border:2px solid var(--ink);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;background:#EAE4D3;}
+  .sketch-box span{font-family:'Space Mono';font-size:0.78rem;color:var(--grey);text-align:center;padding:20px;}
+  .disciplines-row{display:flex;gap:0;flex-wrap:wrap;margin-top:24px;border-top:1px solid var(--hair);}
+  .disciplines-row span{font-family:'Space Mono';font-size:0.72rem;padding:10px 18px 10px 0;border-right:1px solid var(--hair);margin-right:18px;text-transform:uppercase;}
+  .disciplines-row span:last-child{border-right:none;}
+
+  /* EXPERIENCE columns like newspaper */
+  .cols3{columns:2;column-gap:50px;}
+  .story{break-inside:avoid;margin-bottom:34px;}
+  .story h3{font-size:1.25rem;margin-bottom:4px;}
+  .story .meta{font-family:'Space Mono';font-size:0.72rem;color:var(--brick);margin-bottom:8px;display:block;}
+  .story p{font-size:0.92rem;color:#3a362d;}
+
+  /* SKILLS */
+  .skill-index{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink);border-left:1px solid var(--ink);}
+  .skill-index div{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:22px 18px;font-size:0.92rem;}
+
+  /* PROJECTS */
+  .headline-list{}
+  .headline-item{padding:30px 0;border-top:1px solid var(--hair);display:grid;grid-template-columns:60px 1fr;gap:24px;}
+  .headline-item:first-child{border-top:none;}
+  .headline-item .no{font-family:'Space Mono';color:var(--brick);}
+  .headline-item h3{font-size:1.6rem;margin-bottom:8px;}
+  .headline-item p{color:#3a362d;font-size:0.95rem;}
+
+  /* RESUME */
+  .resume-strip{display:flex;justify-content:space-between;align-items:center;border:2px solid var(--ink);padding:30px 36px;flex-wrap:wrap;gap:20px;}
+  .btn{font-family:'Space Mono';font-size:0.8rem;background:var(--brick);color:var(--parchment);padding:14px 26px;text-transform:uppercase;letter-spacing:0.05em;}
+
+  /* CHANNELS */
+  .channel-tri{display:grid;grid-template-columns:repeat(3,1fr);}
+  .channel-tri > div{padding:28px;border-left:1px solid var(--hair);}
+  .channel-tri > div:first-child{border-left:none;padding-left:0;}
+  .channel-tri h3{font-size:1.2rem;margin-bottom:8px;}
+  .channel-tri p{font-size:0.9rem;color:#3a362d;}
+  .channel-tri .kicker{display:block;margin-bottom:10px;}
+
+  /* PUBLICATIONS */
+  table{width:100%;border-collapse:collapse;}
+  td{padding:16px 0;border-top:1px solid var(--hair);font-size:0.95rem;}
+  tr:first-child td{border-top:none;}
+  td.meta{font-family:'Space Mono';font-size:0.75rem;color:var(--grey);text-align:right;}
+
+  /* SHELF */
+  .shelf-tri{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;}
+  .shelf-tri ul{list-style:none;margin-top:16px;}
+  .shelf-tri li{padding:10px 0;border-top:1px solid var(--hair);font-size:0.9rem;}
+  .shelf-tri li:first-child{border-top:none;}
+
+  /* PHILOSOPHY */
+  #philosophy{text-align:center;}
+  .quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.6rem,3.6vw,2.6rem);max-width:760px;margin:0 auto;}
+
+  #contact{text-align:center;}
+  #contact h2{font-size:clamp(2.2rem,4.5vw,3.4rem);}
+  .contact-email{font-family:'Space Mono';font-size:1.05rem;color:var(--brick);border-bottom:1px solid var(--brick);margin:24px 0;display:inline-block;}
+  .contact-social{display:flex;gap:24px;justify-content:center;font-family:'Space Mono';font-size:0.78rem;text-transform:uppercase;}
+
+  footer{text-align:center;padding:32px 0;font-family:'Space Mono';font-size:0.7rem;color:var(--grey);border-top:3px double var(--ink);}
+
+  @media (max-width:820px){
+    .lead-grid,.about-cols,.channel-tri,.shelf-tri{grid-template-columns:1fr;}
+    .cols3{columns:1;}
+    .skill-index{grid-template-columns:repeat(2,1fr);}
+    .channel-tri>div{border-left:none;padding-left:0;border-top:1px solid var(--hair);padding-top:20px;}
+    .channel-tri>div:first-child{border-top:none;}
+    .navrow{gap:18px;}
+    section{padding:56px 0;}
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker-band"><div class="ticker-track">
+  <span>&#10022; MEDIA</span><span>&#10022; TECH</span><span>&#10022; CREATIVE ENTREPRENEURSHIP</span><span>&#10022; CHIDERA OG ONYEKACHUKWU</span>
+  <span>&#10022; MEDIA</span><span>&#10022; TECH</span><span>&#10022; CREATIVE ENTREPRENEURSHIP</span><span>&#10022; CHIDERA OG ONYEKACHUKWU</span>
+</div></div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-top">
+      <span>Vol. I &middot; No. 1</span>
+      <span>Est. 2026</span>
+      <span id="live-date"></span>
+    </div>
+    <h1 class="masthead-title">Chidera OG</h1>
+    <p class="masthead-sub">The personal dispatch of Chidera Onyekachukwu &mdash; media, tech &amp; creative entrepreneurship</p>
+  </div>
+</header>
+
+<nav>
+  <div class="navrow">
+    <a href="#home">Home</a><a href="#about">About</a><a href="#projects">Work</a>
+    <a href="#publications">Publications</a><a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section id="home">
+  <div class="wrap">
+    <div class="lead-grid">
+      <div>
+        <p class="drop-cap">Consider this like my digital residence. Just like I have a physical home, this is where I reside online. Here, you will find my work experience over the years, skills honed with that experience, projects I'm building, my resume, creative channels, publications, and my media library.</p>
+        <p>Oh, you are in for a treat.</p>
+        <p>You're presently at the door to my digital home &mdash; scroll down to enter the living room.</p>
+      </div>
+      <div class="byline-box">
+        <span class="kicker">By-line</span>
+        <h3>Somewhere between media, tech, and creative entrepreneurship.</h3>
+        <ul class="social-list">
+          <li>LinkedIn</li><li>Instagram</li><li>Substack</li><li>Medium</li>
+          <li>X</li><li>TikTok</li><li>Facebook</li><li>Snapchat</li><li>YouTube</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><h2>About Me</h2><span class="section-num">&sect; 01</span></div>
+    <div class="about-cols">
+      <div class="sketch-box"><span>Pencil-sketch<br>portrait here</span></div>
+      <div>
+        <h3 style="font-size:1.6rem;margin-bottom:16px;">Hello, I'm Chidera: a multidisciplinary builder working across media, tech, and creative entrepreneurship.</h3>
+        <p style="color:#3a362d;margin-bottom:14px;">I don't pick lanes &mdash; I build roads between them. This is my digital home, and you've just walked through the door.</p>
+        <div class="disciplines-row">
+          <span>Media</span><span>Tech</span><span>Entrepreneurship</span><span>Strategy</span><span>Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head"><h2>Experience Over the Years</h2><span class="section-num">&sect; 02</span></div>
+    <div class="cols3">
+      <div class="story"><span class="meta">2024 &mdash; Present</span><h3>Role Title Here</h3><p>Company / venture &mdash; what you owned, and what changed because you were there.</p></div>
+      <div class="story"><span class="meta">2022 &mdash; 2024</span><h3>Role Title Here</h3><p>Company / venture &mdash; what you owned, and what changed because you were there.</p></div>
+      <div class="story"><span class="meta">2020 &mdash; 2022</span><h3>Role Title Here</h3><p>Company / venture &mdash; what you owned, and what changed because you were there.</p></div>
+      <div class="story"><span class="meta">2018 &mdash; 2020</span><h3>Role Title Here</h3><p>Company / venture &mdash; what you owned, and what changed because you were there.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><h2>Skills Honed</h2><span class="section-num">&sect; 03</span></div>
+    <div class="skill-index">
+      <div>Brand Strategy</div><div>Content Design</div><div>Product Thinking</div><div>Storytelling</div>
+      <div>Community Building</div><div>Creative Direction</div><div>Copywriting</div><div>Partnerships</div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head"><h2>Projects</h2><span class="section-num">&sect; 04</span></div>
+    <div class="headline-list">
+      <div class="headline-item"><span class="no">01</span><div><h3>Drop by Drop</h3><p>What this project is, who it's for, and the problem it's solving. Swap in the real details.</p></div></div>
+      <div class="headline-item"><span class="no">02</span><div><h3>POL +234</h3><p>What this project is, who it's for, and the problem it's solving. Swap in the real details.</p></div></div>
+      <div class="headline-item"><span class="no">03</span><div><h3>Facedolls</h3><p>What this project is, who it's for, and the problem it's solving. Swap in the real details.</p></div></div>
+      <div class="headline-item"><span class="no">04</span><div><h3>Regali</h3><p>What this project is, who it's for, and the problem it's solving. Swap in the real details.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="wrap">
+    <div class="section-head"><h2>Resume / CV</h2><span class="section-num">&sect; 05</span></div>
+    <div class="resume-strip">
+      <div><h3 style="font-size:1.3rem;">The full record, dated and filed.</h3></div>
+      <a href="#" class="btn">Download CV</a>
+    </div>
+  </div>
+</section>
+
+<section id="channels">
+  <div class="wrap">
+    <div class="section-head"><h2>Creative Channels</h2><span class="section-num">&sect; 06</span></div>
+    <div class="channel-tri">
+      <div><span class="kicker">Design</span><h3>Design Channel</h3><p>Visual work and brand systems.</p></div>
+      <div><span class="kicker">Visual</span><h3>Visual Channel</h3><p>Photography and film.</p></div>
+      <div><span class="kicker">Writing</span><h3>Writing Channel</h3><p>Essays on media, tech, and building.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="wrap">
+    <div class="section-head"><h2>Publications</h2><span class="section-num">&sect; 07</span></div>
+    <table>
+      <tr><td>Publication Title Here</td><td class="meta">Outlet &middot; 2026</td></tr>
+      <tr><td>Publication Title Here</td><td class="meta">Outlet &middot; 2025</td></tr>
+      <tr><td>Publication Title Here</td><td class="meta">Outlet &middot; 2025</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="shelf">
+  <div class="wrap">
+    <div class="section-head"><h2>OG's Media Library</h2><span class="section-num">&sect; 08</span></div>
+    <div class="shelf-tri">
+      <div><span class="kicker">Reading</span><ul><li>Book Title &mdash; Author</li><li>Book Title &mdash; Author</li><li>Book Title &mdash; Author</li></ul></div>
+      <div><span class="kicker">Watching</span><ul><li>Film / Show &mdash; Year</li><li>Film / Show &mdash; Year</li><li>Film / Show &mdash; Year</li></ul></div>
+      <div><span class="kicker">Listening</span><ul><li>Album &mdash; Artist</li><li>Album &mdash; Artist</li><li>Album &mdash; Artist</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="philosophy">
+  <div class="wrap">
+    <span class="kicker">Editorial Note</span>
+    <p class="quote" style="margin-top:20px;">"Build what you wish existed &mdash; then let it introduce you."</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Get In Touch</h2>
+    <a href="mailto:hello@chideraog.com" class="contact-email">hello@chideraog.com</a>
+    <div class="contact-social">
+      <a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">X</a><a href="#">Substack</a>
+    </div>
+  </div>
+</section>
+
+<footer>Chidera OG Onyekachukwu &copy; 2026 &mdash; The Dispatch, printed daily online.</footer>
+
+<script>
+document.getElementById('live-date').textContent = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+</script>
+</body>
+</html>
